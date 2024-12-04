@@ -73,7 +73,7 @@
                     <div class="actions">
                         <div class="btn-group btn-group-devided">
                             <asp:HyperLink ID="hlAdd" CssClass="btn btn-transparent btn-circle btn-sm btn-outline green-jungle active" NavigateUrl="~/AdminPanel/Country/Add" runat="server"> + Add New</asp:HyperLink>
-                            <asp:HyperLink ID="hlAddMany" CssClass="btn btn-transparent btn-circle btn-sm btn-outline green-jungle active" NavigateUrl="~/AdminPanel/CountryAddMany" runat="server"> + Add Many</asp:HyperLink>
+                            <asp:HyperLink ID="hlAddMany" CssClass="btn btn-transparent btn-circle btn-sm btn-outline green-jungle active" NavigateUrl="~/AdminPanel/Country/AddMany" runat="server"> + Add Many</asp:HyperLink>
                             <asp:Button ID="btnDelete" CssClass="btn btn-transparent btn-circle btn-sm btn-outline btn-danger active" OnClick="btnDelete_Click" runat="server" Text="Delete Selected" />
                         </div>
                     </div>

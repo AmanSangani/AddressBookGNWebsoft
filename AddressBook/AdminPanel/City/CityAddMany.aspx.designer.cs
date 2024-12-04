@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AddressBook.AdminPanel.State
+namespace AddressBook.AdminPanel.City
 {
 
 
-    public partial class StateList
+    public partial class CityAddMany
     {
 
         /// <summary>
@@ -24,6 +24,15 @@ namespace AddressBook.AdminPanel.State
         protected global::System.Web.UI.WebControls.Label lbl;
 
         /// <summary>
+        /// ScriptManager1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
         /// lblMsj control.
         /// </summary>
         /// <remarks>
@@ -33,138 +42,120 @@ namespace AddressBook.AdminPanel.State
         protected global::System.Web.UI.WebControls.Label lblMsj;
 
         /// <summary>
-        /// rfvCountry control.
+        /// rfvCityName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCountry;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCityName;
 
         /// <summary>
-        /// ddlCountry control.
+        /// txtNumOfRow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCountry;
+        protected global::System.Web.UI.WebControls.TextBox txtNumOfRow;
 
         /// <summary>
-        /// txtStateNameSearch control.
+        /// btnLoad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStateNameSearch;
+        protected global::System.Web.UI.WebControls.Button btnLoad;
 
         /// <summary>
-        /// txtStateCodeSearch control.
+        /// lblErrMsj control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStateCodeSearch;
+        protected global::System.Web.UI.WebControls.Label lblErrMsj;
 
         /// <summary>
-        /// txtStateCapitalSearch control.
+        /// columnDisplay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStateCapitalSearch;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl columnDisplay;
 
         /// <summary>
-        /// btnSearch control.
+        /// Div5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div5;
 
         /// <summary>
-        /// btnClear control.
+        /// Div2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClear;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div2;
 
         /// <summary>
-        /// errDisplay control.
+        /// Div1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl errDisplay;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
 
         /// <summary>
-        /// lblInfo control.
+        /// Div3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblInfo;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div3;
 
         /// <summary>
-        /// btnAdd control.
+        /// UpdatePanel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink btnAdd;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
 
         /// <summary>
-        /// hlAddMany control.
+        /// rptLoadRows control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink hlAddMany;
+        protected global::System.Web.UI.WebControls.Repeater rptLoadRows;
 
         /// <summary>
-        /// btnDelete control.
+        /// Div4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div4;
 
         /// <summary>
-        /// tableDisplay control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tableDisplay;
-
-        /// <summary>
-        /// chkAll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chkAll;
-
-        /// <summary>
-        /// rptState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptState;
+        protected global::System.Web.UI.WebControls.Button btnSave;
     }
 }

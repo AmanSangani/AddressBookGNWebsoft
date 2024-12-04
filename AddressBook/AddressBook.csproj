@@ -740,6 +740,7 @@
     <Content Include="AdminPanel\Auth\Login.aspx" />
     <Content Include="AdminPanel\Auth\Register.aspx" />
     <Content Include="AdminPanel\City\CityAddEdit.aspx" />
+    <Content Include="AdminPanel\City\CityAddMany.aspx" />
     <Content Include="AdminPanel\City\CityList.aspx" />
     <Content Include="AdminPanel\ContactCategory\ContactCategoryList.aspx" />
     <Content Include="AdminPanel\Contact\ContactAddEdit.aspx" />
@@ -749,6 +750,7 @@
     <Content Include="AdminPanel\Country\CountryList.aspx" />
     <Content Include="AdminPanel\Country\demo.aspx" />
     <Content Include="AdminPanel\State\StateAddEdit.aspx" />
+    <Content Include="AdminPanel\State\StateAddMany.aspx" />
     <Content Include="AdminPanel\State\StateList.aspx" />
     <Content Include="AdminPanel\Country\CountryAddEdit.aspx" />
     <Content Include="assets\apps\css\inbox.min.css" />
@@ -1447,6 +1449,13 @@
     <Compile Include="AdminPanel\City\CityAddEdit.aspx.designer.cs">
       <DependentUpon>CityAddEdit.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AdminPanel\City\CityAddMany.aspx.cs">
+      <DependentUpon>CityAddMany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPanel\City\CityAddMany.aspx.designer.cs">
+      <DependentUpon>CityAddMany.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminPanel\City\CityList.aspx.cs">
       <DependentUpon>CityList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1509,6 +1518,13 @@
     </Compile>
     <Compile Include="AdminPanel\State\StateAddEdit.aspx.designer.cs">
       <DependentUpon>StateAddEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanel\State\StateAddMany.aspx.cs">
+      <DependentUpon>StateAddMany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPanel\State\StateAddMany.aspx.designer.cs">
+      <DependentUpon>StateAddMany.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPanel\State\StateList.aspx.cs">
       <DependentUpon>StateList.aspx</DependentUpon>

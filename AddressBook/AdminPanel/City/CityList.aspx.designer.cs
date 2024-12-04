@@ -150,6 +150,15 @@ namespace AddressBook.AdminPanel.City
         protected global::System.Web.UI.WebControls.HyperLink btnAdd;
 
         /// <summary>
+        /// hlAddMany control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlAddMany;
+
+        /// <summary>
         /// btnDelete control.
         /// </summary>
         /// <remarks>

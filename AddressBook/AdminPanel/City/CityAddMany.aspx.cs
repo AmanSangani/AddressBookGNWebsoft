@@ -1,23 +1,22 @@
-﻿using System;
+﻿using AddressBook.HelperClass;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace AddressBook.AdminPanel.Country
+namespace AddressBook.AdminPanel.City
 {
-    public partial class CountryAddMany : System.Web.UI.Page
+    public partial class CityAddMany : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
-
         #region Button : Load
         protected void btnLoad_Click(object sender, EventArgs e)
         {
@@ -32,6 +31,15 @@ namespace AddressBook.AdminPanel.Country
                 }
                 rptLoadRows.DataSource = rows;
                 rptLoadRows.DataBind();
+
+                foreach(RepeaterItem item in rptLoadRows.Items)
+                {
+                    DropDownList ddlCountry = (DropDownList)item.FindControl("ddlCountry");
+                    CommonDropdownList.FillCountryDropDown(ddlCountry, Session["UserID"].ToString());
+
+                    DropDownList ddlState = (DropDownList)item.FindControl("ddlState");
+                    ddlState.Items.Insert(0, new ListItem("Select State", "-1"));
+                }
             }
         }
 
@@ -45,22 +53,25 @@ namespace AddressBook.AdminPanel.Country
 
             foreach(RepeaterItem item in rptLoadRows.Items)
             {
-                TextBox txtCountryName = (TextBox)item.FindControl("txtCountryName");
-                TextBox txtCountryCode = (TextBox)item.FindControl("txtCountryCode");
-                TextBox txtCountryCapital = (TextBox)item.FindControl("txtCountryCapital");
+                DropDownList ddlCountry = (DropDownList)item.FindControl("ddlCountry");
+                DropDownList ddlState = (DropDownList)item.FindControl("ddlState");
+                TextBox txtCityName = (TextBox)item.FindControl("txtCityName");
+                TextBox txtCityCode = (TextBox)item.FindControl("txtCityCode");
 
-                bool isRowEmpty = string.IsNullOrWhiteSpace(txtCountryName.Text) &&
-                                  string.IsNullOrWhiteSpace(txtCountryCode.Text) &&
-                                  string.IsNullOrWhiteSpace(txtCountryCapital.Text);
+                bool isRowEmpty = ddlCountry.SelectedValue == "-1" &&
+                                  ddlState.SelectedValue == "-1" &&
+                                  string.IsNullOrWhiteSpace(txtCityName.Text) &&
+                                  string.IsNullOrWhiteSpace(txtCityCode.Text);
 
                 if(isRowEmpty)
                 {
                     continue;
                 }
 
-                bool isRowCompletelyFilled = !string.IsNullOrWhiteSpace(txtCountryName.Text) &&
-                                             !string.IsNullOrWhiteSpace(txtCountryCode.Text) &&
-                                             !string.IsNullOrWhiteSpace(txtCountryCapital.Text);
+                bool isRowCompletelyFilled = ddlCountry.SelectedValue != "-1" &&
+                                             ddlState.SelectedValue != "-1" &&
+                                             !string.IsNullOrWhiteSpace(txtCityName.Text) &&
+                                             !string.IsNullOrWhiteSpace(txtCityCode.Text);
 
                 if(isRowCompletelyFilled)
                 {
@@ -85,27 +96,29 @@ namespace AddressBook.AdminPanel.Country
             #region Save Data
             foreach(RepeaterItem item in rptLoadRows.Items)
             {
-                TextBox txtCountryName = (TextBox)item.FindControl("txtCountryName");
-                TextBox txtCountryCode = (TextBox)item.FindControl("txtCountryCode");
-                TextBox txtCountryCapital = (TextBox)item.FindControl("txtCountryCapital");
+                DropDownList ddlCountry = (DropDownList)item.FindControl("ddlCountry");
+                DropDownList ddlState = (DropDownList)item.FindControl("ddlState");
+                TextBox txtCityName = (TextBox)item.FindControl("txtCityName");
+                TextBox txtCityCode = (TextBox)item.FindControl("txtCityCode");
 
-                bool isRowCompletelyFilled = !string.IsNullOrWhiteSpace(txtCountryName.Text) &&
-                                             !string.IsNullOrWhiteSpace(txtCountryCode.Text) &&
-                                             !string.IsNullOrWhiteSpace(txtCountryCapital.Text);
+                bool isRowCompletelyFilled = ddlCountry.SelectedValue != "-1" &&
+                                             ddlState.SelectedValue != "-1" &&
+                                             !string.IsNullOrWhiteSpace(txtCityName.Text) &&
+                                             !string.IsNullOrWhiteSpace(txtCityCode.Text);
 
                 if(isRowCompletelyFilled)
                 {
-                    saveCountryData(txtCountryName.Text, txtCountryCode.Text, txtCountryCapital.Text);
+                    saveCityData(ddlState.SelectedValue, txtCityName.Text, txtCityCode.Text);
                 }
             }
             #endregion Save Data
 
-            Response.Redirect("~/AdminPanel/Country/List");
+            //Response.Redirect("~/AdminPanel/City/List");
         }
         #endregion Button : Save
 
-        #region Save Country Data
-        private void saveCountryData(String CountryName, String CountryCode, String CountryCapital)
+        #region Save City Data
+        private void saveCityData(String StateID, String CityName, String CityCode)
         {
 
             #region Establish Connection
@@ -132,20 +145,20 @@ namespace AddressBook.AdminPanel.Country
                 #region Store Procedure, parameters and execute
 
                 cmdObj.Parameters.AddWithValue("@UserID", Session["UserID"]);
-                cmdObj.Parameters.AddWithValue("@CountryName", CountryName);
-                cmdObj.Parameters.AddWithValue("@CountryCode", CountryCode);
-                cmdObj.Parameters.AddWithValue("@CountryCapital", CountryCapital);
+                cmdObj.Parameters.AddWithValue("@StateID", StateID);
+                cmdObj.Parameters.AddWithValue("@CityName", CityName);
+                cmdObj.Parameters.AddWithValue("@CityCode", CityCode);
 
 
                 #region Add-mode
 
-                cmdObj.CommandText = "PR_Country_Insert";
+                cmdObj.CommandText = "PR_City_Insert";
 
                 cmdObj.ExecuteNonQuery();
 
                 lblErrMsj.ForeColor = System.Drawing.Color.Green;
                 lblErrMsj.Text = "Data Inserted Successfully...";
-                
+
                 #endregion Add-mode
 
                 #endregion Store Procedure, parameters and execute
@@ -172,6 +185,29 @@ namespace AddressBook.AdminPanel.Country
             }
             #endregion Close Connection
         }
-        #endregion Save Country Data
+        #endregion Save City Data
+
+        #region DropDownList Selection Change
+        protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RepeaterItem item = (sender as DropDownList).NamingContainer as RepeaterItem;
+
+            DropDownList ddlCountry = (DropDownList)item.FindControl("ddlCountry");
+            DropDownList ddlState = (DropDownList)item.FindControl("ddlState");
+
+            if(Request.QueryString["CityCode"] == null)
+            {
+                ddlState.Items.Clear();
+
+                String str = "";
+
+                str = ddlCountry.SelectedValue;
+
+                CommonDropdownList.FillStateDropDown(ddlState, str, Session["UserID"].ToString());
+            }
+        }
+        #endregion DropDownList Selection Change
+
+
     }
 }

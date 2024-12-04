@@ -46,7 +46,7 @@
                                                         <i class="fa fa-envelope"></i>
                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="**" Display="Dynamic" ControlToValidate="ddlCountry" ForeColor="Red" InitialValue="-1" ValidationGroup="AddData"></asp:RequiredFieldValidator>
                                                     </span>
-                                                    <asp:DropDownList ID="ddlCountry" CssClass="form-control" AppendDataBoundItems="True" AutoPostBack="True" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged" runat="server"></asp:DropDownList>
+                                                    <asp:DropDownList ID="ddlCountry" CssClass="form-control" AutoPostBack="True" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged" runat="server"></asp:DropDownList>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,6 +121,7 @@
                     <div class="actions">
                         <div class="btn-group btn-group-devided">
                             <asp:HyperLink ID="btnAdd" CssClass="btn btn-transparent btn-circle btn-sm btn-outline green-jungle active" NavigateUrl="~/AdminPanel/City/Add" runat="server" Text=" + Add New" />
+                            <asp:HyperLink ID="hlAddMany" CssClass="btn btn-transparent btn-circle btn-sm btn-outline green-jungle active" NavigateUrl="~/AdminPanel/City/AddMany" runat="server"> + Add Many</asp:HyperLink>
                             <asp:Button ID="btnDelete" CssClass="btn btn-transparent btn-circle btn-sm btn-outline btn-danger active" OnClick="btnDelete_Click" runat="server" Text="Delete Selected" />
                         </div>
                     </div>

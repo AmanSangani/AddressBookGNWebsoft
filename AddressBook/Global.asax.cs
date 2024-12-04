@@ -53,18 +53,21 @@ namespace AddressBook
             #region Country Routes
 
             routes.MapPageRoute("AddressBookCountryList", "AdminPanel/Country/List", "~/AdminPanel/Country/CountryList.aspx");
+            
+            routes.MapPageRoute("AddressBookCountryAddMany", "AdminPanel/Country/AddMany", "~/AdminPanel/Country/CountryAddMany.aspx");
 
             routes.MapPageRoute("AddressBookCountryAdd", "AdminPanel/Country/{OperationName}", "~/AdminPanel/Country/CountryAddEdit.aspx");
 
             routes.MapPageRoute("AddressBookCountryEdit", "AdminPanel/Country/{OperationName}/{CountryID}", "~/AdminPanel/Country/CountryAddEdit.aspx");
 
-            routes.MapPageRoute("AddressBookCountryAddMany", "AdminPanel/CountryAddMany", "~/AdminPanel/Country/CountryAddMany.aspx");
 
             #endregion Country Routes
 
             #region State Routes
 
             routes.MapPageRoute("AddressBookStateList", "AdminPanel/State/List", "~/AdminPanel/State/StateList.aspx");
+
+            routes.MapPageRoute("AddressBookStateAddMany", "AdminPanel/State/AddMany", "~/AdminPanel/State/StateAddMany.aspx");
 
             routes.MapPageRoute("AddressBookStateAdd", "AdminPanel/State/{OperationName}", "~/AdminPanel/State/StateAddEdit.aspx");
 
@@ -75,6 +78,8 @@ namespace AddressBook
             #region City Routes
 
             routes.MapPageRoute("AddressBookCityList", "AdminPanel/City/List", "~/AdminPanel/City/CityList.aspx");
+
+            routes.MapPageRoute("AddressBookCityAddMany", "AdminPanel/City/AddMany", "~/AdminPanel/City/CityAddMany.aspx");
 
             routes.MapPageRoute("AddressBookCityAdd", "AdminPanel/City/{OperationName}", "~/AdminPanel/City/CityAddEdit.aspx");
 

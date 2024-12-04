@@ -101,6 +101,7 @@
                     <div class="actions">
                         <div class="btn-group btn-group-devided">
                             <asp:HyperLink ID="btnAdd" CssClass="btn btn-transparent btn-circle btn-sm btn-outline green-jungle active" NavigateUrl="~/AdminPanel/State/Add" runat="server" Text=" + Add New" />
+                            <asp:HyperLink ID="hlAddMany" CssClass="btn btn-transparent btn-circle btn-sm btn-outline green-jungle active" NavigateUrl="~/AdminPanel/State/AddMany" runat="server"> + Add Many</asp:HyperLink>
                             <asp:Button ID="btnDelete" CssClass="btn btn-transparent btn-circle btn-sm btn-outline btn-danger active" OnClick="btnDelete_Click" runat="server" Text="Delete Selected" />
                         </div>
                     </div>

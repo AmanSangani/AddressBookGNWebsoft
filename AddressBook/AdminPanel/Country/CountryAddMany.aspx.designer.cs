@@ -60,6 +60,15 @@ namespace AddressBook.AdminPanel.Country
         protected global::System.Web.UI.WebControls.Button btnLoad;
 
         /// <summary>
+        /// lblErrMsj control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrMsj;
+
+        /// <summary>
         /// columnDisplay control.
         /// </summary>
         /// <remarks>
@@ -69,15 +78,6 @@ namespace AddressBook.AdminPanel.Country
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl columnDisplay;
 
         /// <summary>
-        /// Div1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
-
-        /// <summary>
         /// Div2 control.
         /// </summary>
         /// <remarks>
@@ -85,6 +85,15 @@ namespace AddressBook.AdminPanel.Country
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div2;
+
+        /// <summary>
+        /// Div1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
 
         /// <summary>
         /// Div3 control.
