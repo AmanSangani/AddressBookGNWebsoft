@@ -9,20 +9,99 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlTypes;
 using System.Web.UI.HtmlControls;
+using System.Diagnostics.PerformanceData;
 
 namespace AddressBook.AdminPanel.Country
 {
     public partial class CountryList : System.Web.UI.Page
     {
+        double countOfData = 0;
+        double pageSize = 5;
+        double numOfPages = 0;
+        double PageNumber = 1;
+
         #region Page Load
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!Page.IsPostBack)
             {
                 FillGridView();
+                countData(Session["UserID"].ToString());
             }
         }
         #endregion Page Load
+
+        #region countData
+        private void countData(String UserID)
+        {
+            #region Establish Connection
+            SqlConnection connObj = new SqlConnection(ConfigurationManager.ConnectionStrings["AddressBookConnectionString"].ConnectionString);
+            #endregion Establish Connection
+
+            try
+            {
+                #region Connection and Command Object
+                if(connObj.State != ConnectionState.Open)
+                {
+                    connObj.Open();
+                }
+
+                SqlCommand cmdObj = connObj.CreateCommand();
+
+                cmdObj.CommandType = CommandType.StoredProcedure;
+
+                #endregion Connection and Command Object
+
+                #region Store Procedure, Parameters and Execute
+                cmdObj.CommandText = "PR_Country_Count";
+
+                cmdObj.Parameters.AddWithValue("@UserID", Session["UserID"]);
+
+                countOfData = Convert.ToInt32(cmdObj.ExecuteScalar().ToString());
+
+                numOfPages = Math.Ceiling(countOfData / pageSize);
+
+                #endregion Store Procedure, Parameters and Execute
+
+                #region create Pagination
+                List<object> rows = new List<object>();
+                for(int i = 1; i <= numOfPages; i++)
+                {
+                    rows.Add(new { });
+                }
+                rptPagination.DataSource = rows;
+                rptPagination.DataBind();
+
+                int index = 1;
+                foreach(RepeaterItem item in rptPagination.Items)
+                {
+                    LinkButton hlNumOfPage = (LinkButton)item.FindControl("hlNumOfPage");
+                    hlNumOfPage.Text = index.ToString();
+                    index++;
+                }
+                #endregion create Pagination
+
+
+            }
+            #region Exception Handling
+            catch(SqlException sqlEx)
+            {
+                Response.Write("SQL Error: " + sqlEx.Message);
+            }
+            catch(Exception ex)
+            {
+                Response.Write("Error: " + ex.Message);
+            }
+            #endregion Exception Handling
+
+            #region Close Connection
+            finally
+            {
+                connObj.Close();
+            }
+            #endregion Close Connection
+        }
+        #endregion countData
 
         #region FillGridView
         private void FillGridView()
@@ -62,6 +141,8 @@ namespace AddressBook.AdminPanel.Country
                 CountryCode = txtCountryCodeSearch.Text;
 
                 cmdObj.Parameters.AddWithValue("@UserID", Session["UserID"]);
+                cmdObj.Parameters.AddWithValue("@PageNumber", PageNumber);
+                cmdObj.Parameters.AddWithValue("@PageSize", pageSize);
                 cmdObj.Parameters.AddWithValue("@CountryName", CountryName);
                 cmdObj.Parameters.AddWithValue("@CountryCode", CountryCode);
 
@@ -69,7 +150,7 @@ namespace AddressBook.AdminPanel.Country
 
                 rptCountry.DataSource = sdrObj;
                 rptCountry.DataBind();
-
+                
                 #endregion Store Procedure and execute
 
             }
@@ -106,6 +187,7 @@ namespace AddressBook.AdminPanel.Country
                 {
                     DeleteCountryRecord(e.CommandArgument.ToString().Trim());
                     FillGridView();
+                    countData(Session["UserID"].ToString());
                 }
             }
             #endregion Delete Record
@@ -179,6 +261,7 @@ namespace AddressBook.AdminPanel.Country
             txtCountryNameSearch.Text = "";
             txtCountryCodeSearch.Text = "";
             FillGridView();
+            countData(Session["UserID"].ToString());
         }
         #endregion Button : Clear
 
@@ -195,7 +278,25 @@ namespace AddressBook.AdminPanel.Country
                 }
             }
             FillGridView();
+            countData(Session["UserID"].ToString());
         }
         #endregion Multiple Delete
+
+        #region Pagination Row-Command
+        protected void rptPagination_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            #region Page Number
+            if(e.CommandName == "numOfPage")
+            {
+                if(e.CommandArgument.ToString() != "")
+                {
+                    PageNumber = Convert.ToInt32(e.CommandArgument.ToString());
+                    FillGridView();
+                }
+            }
+            #endregion Page Number
+        }
+        #endregion Pagination Row-Command
+
     }
 }

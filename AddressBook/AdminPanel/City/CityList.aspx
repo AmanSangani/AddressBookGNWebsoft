@@ -9,12 +9,6 @@
 </asp:Content>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="MasterPageLinks" runat="server">
-
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <link href="../assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
-        <link href="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
-        <!-- END PAGE LEVEL PLUGINS -->
-
     <link rel="shortcut icon" href="favicon.ico" />
 </asp:Content>
 
@@ -36,6 +30,7 @@
                     <div class="form-body">
                         <asp:Label ID="lblMsj" EnableViewState="false" runat="server" Text=""></asp:Label>
                         <div class="row ">
+
                             <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                                 <ContentTemplate>
                                     <fieldset>

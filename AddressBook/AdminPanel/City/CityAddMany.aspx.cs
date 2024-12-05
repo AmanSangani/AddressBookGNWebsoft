@@ -79,7 +79,7 @@ namespace AddressBook.AdminPanel.City
                 }
                 else
                 {
-                    lblErrMsj.Text = "Please complete all fields or leave them empty.";
+                    lblErrMsj.Text = $"Please complete Row {item.ItemIndex + 1}'s fields or leave them empty.";
                     lblErrMsj.ForeColor = System.Drawing.Color.Red;
                     return;
                 }
