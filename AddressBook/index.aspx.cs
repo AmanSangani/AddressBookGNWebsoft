@@ -39,7 +39,9 @@ namespace AddressBook
             if(!Page.IsPostBack)
             {
                 FillGridView();
+
             }
+                BindCol();
 
         }
         #endregion Page Load
@@ -69,7 +71,7 @@ namespace AddressBook
                 cmdObj.CommandText = "PR_CSC_GetTotalCountryStateCityCount";
 
                 cmdObj.Parameters.AddWithValue("@UserID", Session["UserID"]);
-                
+
                 SqlDataReader sdrObj = cmdObj.ExecuteReader();
 
                 if(sdrObj.Read())
@@ -261,7 +263,7 @@ namespace AddressBook
 
         #endregion Recent States
 
-        #region Recent States
+        #region FillDataTreeState
 
         private void FillDataTreeState(String CountryID)
         {
@@ -344,7 +346,7 @@ namespace AddressBook
             #endregion Close Connection
         }
 
-        #endregion Recent States
+        #endregion FillDataTreeState
 
         #region Recent City
 
@@ -499,6 +501,106 @@ namespace AddressBook
             #endregion Page Number
         }
         #endregion Pagination Row-Command
+
+        private void BindCol()
+        {
+            #region Variable Declaration
+            String CountryName = null;
+            String CountryCode = null;
+            #endregion Variable Declaration
+
+            #region Establish Connection
+
+            SqlConnection connObj = new SqlConnection();
+            connObj.ConnectionString = ConfigurationManager.ConnectionStrings["AddressBookConnectionString"].ConnectionString;
+
+            #endregion Establish Connection
+
+            try
+            {
+                #region Connection Open and command obj
+                if(connObj.State != ConnectionState.Open)
+                {
+                    connObj.Open();
+                }
+
+                SqlCommand cmdObj = connObj.CreateCommand();
+
+                cmdObj.CommandType = CommandType.StoredProcedure;
+
+                #endregion Connection Open and command obj
+
+                #region Store Procedure and execute
+
+                cmdObj.CommandText = "PR_Country_SelectAll";
+
+                cmdObj.Parameters.AddWithValue("@UserID", Session["UserID"]);
+                cmdObj.Parameters.AddWithValue("@PageNumber", PageNumber);
+                cmdObj.Parameters.AddWithValue("@PageSize", pageSize);
+                cmdObj.Parameters.AddWithValue("@CountryName", "");
+                cmdObj.Parameters.AddWithValue("@CountryCode", "");
+
+                SqlDataReader sdrObj = cmdObj.ExecuteReader();
+
+                rpCol.DataSource = sdrObj;
+                rpCol.DataBind();
+
+                sdrObj.Close();
+                sdrObj = cmdObj.ExecuteReader();
+
+                rpActive.DataSource = sdrObj;
+                rpActive.DataBind();
+                sdrObj.Close();
+
+                foreach(RepeaterItem items in rpActive.Items)
+                {
+                    Repeater rpData = items.FindControl("rpData") as Repeater;
+                    HiddenField hfCountryID = (HiddenField)items.FindControl("hfCountryID");
+
+                    SqlCommand cmdObj2 = connObj.CreateCommand();
+
+                    cmdObj2.CommandType = CommandType.StoredProcedure;
+
+                    cmdObj2.CommandText = "PR_State_SelectByCountryIDAndSearch";
+
+                    cmdObj2.Parameters.AddWithValue("@UserID", Session["UserID"]);
+                    cmdObj2.Parameters.AddWithValue("@CountryID", hfCountryID.Value);
+                    cmdObj2.Parameters.AddWithValue("@StateName", "");
+                    cmdObj2.Parameters.AddWithValue("@StateCode", "");
+                    cmdObj2.Parameters.AddWithValue("@StateCapital", "");
+
+                    SqlDataReader sdrObj2 = cmdObj2.ExecuteReader();
+
+                    rpData.DataSource = sdrObj2;
+                    rpData.DataBind();
+
+                    sdrObj2.Close();
+                }
+
+                #endregion Store Procedure and execute
+
+            }
+            #region Exception Handling
+            catch(SqlException sqlEx)
+            {
+                Response.Write(sqlEx.Message);
+            }
+            catch(Exception ex)
+            {
+                Response.Write(ex.Message);
+            }
+            #endregion Exception Handling
+
+            #region Close Connection
+            finally
+            {
+                if(connObj.State == ConnectionState.Open)
+                {
+                    connObj.Close();
+                }
+            }
+            #endregion Close Connection
+        }
 
         protected void rptCountry_ItemCommand(object source, RepeaterCommandEventArgs e)
         {

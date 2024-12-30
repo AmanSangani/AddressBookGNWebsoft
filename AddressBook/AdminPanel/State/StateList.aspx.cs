@@ -26,6 +26,11 @@ namespace AddressBook.AdminPanel.State
             if(!Page.IsPostBack)
             {
                 FillCountryDropDown();
+                if(Request.QueryString["CountryID"] != null)
+                {
+                    ddlCountry.SelectedValue = AddressBook.HelperClass.EncryptDecrypt.Decrypt(Request.QueryString["CountryID"].ToString());
+                    FillGridView(ddlCountry.SelectedValue);
+                }
             }
         }
         #endregion Page Load

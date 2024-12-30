@@ -44,6 +44,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1652.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Chart.Controls.4.7.2046\lib\net35\System.Web.DataVisualization.dll</HintPath>
       <Private>True</Private>
@@ -757,6 +778,8 @@
     <Content Include="AdminPanel\assets\pages\scripts\ui-sweetalert.min.js" />
     <Content Include="AdminPanel\assets\pages\scripts\ui-toastr.min.js" />
     <Content Include="AdminPanel\assets\pages\scripts\ui-tree.min.js" />
+    <Content Include="AdminPanel\Auth\ChangePassword.aspx" />
+    <Content Include="AdminPanel\Auth\ForgotPassword.aspx" />
     <Content Include="AdminPanel\Auth\Login.aspx" />
     <Content Include="AdminPanel\Auth\Register.aspx" />
     <Content Include="AdminPanel\City\CityAddEdit.aspx" />
@@ -768,7 +791,7 @@
     <Content Include="AdminPanel\Contact\list.aspx" />
     <Content Include="AdminPanel\Country\CountryAddMany.aspx" />
     <Content Include="AdminPanel\Country\CountryList.aspx" />
-    <Content Include="AdminPanel\Country\demo.aspx" />
+    <Content Include="AdminPanel\Country\Print.aspx" />
     <Content Include="AdminPanel\State\StateAddEdit.aspx" />
     <Content Include="AdminPanel\State\StateAddMany.aspx" />
     <Content Include="AdminPanel\State\StateList.aspx" />
@@ -1445,9 +1468,36 @@
     <Content Include="assets\pages\scripts\ui-tree.min.js" />
     <Content Include="Global.asax" />
     <Content Include="index.aspx" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminPanel\Auth\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPanel\Auth\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminPanel\Auth\ForgotPassword.aspx.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminPanel\Auth\ForgotPassword.aspx.designer.cs">
+      <DependentUpon>ForgotPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AdminPanel\Auth\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1525,12 +1575,12 @@
     <Compile Include="AdminPanel\Country\CountryList.aspx.designer.cs">
       <DependentUpon>CountryList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AdminPanel\Country\demo.aspx.cs">
-      <DependentUpon>demo.aspx</DependentUpon>
+    <Compile Include="AdminPanel\Country\Print.aspx.cs">
+      <DependentUpon>Print.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AdminPanel\Country\demo.aspx.designer.cs">
-      <DependentUpon>demo.aspx</DependentUpon>
+    <Compile Include="AdminPanel\Country\Print.aspx.designer.cs">
+      <DependentUpon>Print.aspx</DependentUpon>
     </Compile>
     <Compile Include="AdminPanel\State\StateAddEdit.aspx.cs">
       <DependentUpon>StateAddEdit.aspx</DependentUpon>
@@ -1567,6 +1617,11 @@
     <Compile Include="AdminPanel\Country\CountryAddEdit.aspx.designer.cs">
       <DependentUpon>CountryAddEdit.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Dataset\dtCountryList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dtCountryList.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1580,6 +1635,7 @@
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AddressBookMasterPage.Master" />
@@ -1610,6 +1666,17 @@
     <Content Include="AdminPanel\assets\global\plugins\socicon\font\socicon.woff" />
     <Content Include="AdminPanel\assets\global\plugins\socicon\font\socicon.woff2" />
     <Content Include="AdminPanel\assets\global\plugins\socicon\font\socicond41d.eot" />
+    <Content Include="Dataset\dtCountryList.xsc">
+      <DependentUpon>dtCountryList.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\dtCountryList.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dtCountryList.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Dataset\dtCountryList.xss">
+      <DependentUpon>dtCountryList.xsd</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1618,7 +1685,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="AdminPanel\Country\CountryList.rdlc" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

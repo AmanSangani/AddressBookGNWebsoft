@@ -217,7 +217,7 @@
                 </div>
                 <div class="portlet-body">
                     <div id="chart_1" class="amcharts-chart-div">
-                        <asp:Chart ID="Chart1" runat="server" Visible="false" Style="display: flex; justify-content: center; width: 30%; height: auto;">
+                        <asp:Chart ID="Chart1" runat="server" width=1200px height=500px Visible="false" style="display:flex; justify-content:center; width: 100%; height: 500px;">
                             <Titles>
                                 <asp:Title Text="State Count by Country" Name="Title1" />
                             </Titles>
@@ -225,7 +225,7 @@
                                 <asp:Legend Name="Default" Docking="Bottom" Alignment="Center" IsTextAutoFit="False" />
                             </Legends>
                             <Series>
-                                <asp:Series Name="Country" ChartType="Bar" XValueMember="CountryName" YValueMembers="TotalState" />
+                                <asp:Series Name="Num of State" ChartType="Bar" XValueMember="CountryName" YValueMembers="TotalState" />
                             </Series>
                             <ChartAreas>
                                 <asp:ChartArea Name="ChartArea1">
@@ -234,7 +234,7 @@
                                 </asp:ChartArea>
                             </ChartAreas>
                         </asp:Chart>
-                    </div>
+                    </div>  
                 </div>
             </div>
         </ContentTemplate>
@@ -353,7 +353,235 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
 
+            <asp:UpdatePanel ID="UpLinks" runat="server" EnableViewState="true" UpdateMode="Conditional" ChildrenAsTriggers="false">
+                <ContentTemplate>
+                    <div class="portlet">
+                        <div class="portlet-body form">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                            <div class="portlet box green">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="fa fa-external-link "></i></i>Quick Links
+                                                    </div>
+                                                    <div class="tools">
+                                                        <a href="javascript:;" class="collapse" data-original-title="" title=""></a>
+                                                    </div>
 
+                                                </div>
+                                                <div class="portlet-body" style="display: block;">
+                                                    <div class="tools ">
+                                                        <ul class="nav nav-tabs">
+                                                            <li class="active">
+                                                                <a href="#tab_1_1" class="active menu-toggler font-green" data-toggle="tab" aria-expanded="false">List Pages</a>
+                                                            </li>
+                                                            <li class="">
+                                                                <a href="#tab_1_2" class="font-green" data-toggle="tab" aria-expanded="true">Add Pages </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="portlet-body table-both-scroll">
+                                                        <div class="portlet light ">
+                                                            <div class="portlet-body">
+                                                                <!--BEGIN TABS-->
+                                                                <div class="tab-content">
+                                                                    <div class=" active tab-pane " id="tab_1_1">
+                                                                        <div class="tiles">
+                                                                            <a href="AdminPanel/Country/List">
+                                                                                <div class="tile bg-blue">
+                                                                                    <div class="tile-body">
+                                                                                        <i class="fa fa-list"></i>
+                                                                                    </div>
+                                                                                    <div class="tile-object">
+                                                                                        <div class="name">Country </div>
+                                                                                        <div class="number"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </a>
+                                                                            <a href="AdminPanel/State/List">
+                                                                                <div class="tile bg-blue">
+                                                                                    <div class="tile-body">
+                                                                                        <i class="fa fa-list"></i>
+                                                                                    </div>
+                                                                                    <div class="tile-object">
+                                                                                        <div class="name">State </div>
+                                                                                        <div class="number"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </a>
+                                                                            <a href="AdminPanel/City/List">
+                                                                                <div class="tile bg-blue">
+                                                                                    <div class="tile-body">
+                                                                                        <i class="fa fa-list"></i>
+                                                                                    </div>
+                                                                                    <div class="tile-object">
+                                                                                        <div class="name">City </div>
+                                                                                        <div class="number"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="tab-pane " id="tab_1_2">
+                                                                        <div class="tiles">
+                                                                            <a href="AdminPanel/Country/Add">
+                                                                                <div class="tile bg-red">
+                                                                                    <div class="tile-body">
+                                                                                        <i class="fa fa-edit"></i>
+                                                                                    </div>
+                                                                                    <div class="tile-object">
+                                                                                        <div class="name">Country</div>
+                                                                                        <div class="number"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </a>
+                                                                            <a href="AdminPanel/State/Add">
+                                                                                <div class="tile bg-red">
+                                                                                    <div class="tile-body">
+                                                                                        <i class="fa fa-edit"></i>
+                                                                                    </div>
+                                                                                    <div class="tile-object">
+                                                                                        <div class="name">State</div>
+                                                                                        <div class="number"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </a>
+                                                                            <a href="AdminPanel/City/Add">
+                                                                                <div class="tile bg-red">
+                                                                                    <div class="tile-body">
+                                                                                        <i class="fa fa-edit"></i>
+                                                                                    </div>
+                                                                                    <div class="tile-object">
+                                                                                        <div class="name">City</div>
+                                                                                        <div class="number"></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </a>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                                <!--END TABS-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server" EnableViewState="true" UpdateMode="Conditional" ChildrenAsTriggers="false">
+                <ContentTemplate>
+                    <div class="portlet">
+                        <div class="portlet-body form">
+                            <div class="form-horizontal" role="form">
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+                                            <div class="portlet box yellow">
+                                                <div class="portlet-title">
+                                                    <div class="caption">
+                                                        <i class="fa fa-h-square "></i></i>Country Wise State
+                                                    </div>
+                                                    <div class="tools">
+                                                        <a href="javascript:;" class="collapse" data-original-title="" title=""></a>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body" style="display: block;">
+                                                    <div class="tools ">
+                                                        <ul class="nav nav-tabs">
+                                                            <asp:Repeater ID="rpCol" runat="server">
+                                                                <ItemTemplate>
+                                                                    <li class='<%#Container.ItemIndex == 0 ? "active" : ""%>'>
+                                                                        <asp:LinkButton ID="lbtnCol" runat="server" href='<%#"#tab_Inc_" + Eval("CountryID").ToString()%>' Text='<%#Eval("CountryName") %>' data-toggle="tab"></asp:LinkButton>
+                                                                    </li>
+                                                                </ItemTemplate>
+                                                            </asp:Repeater>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="portlet-body table-both-scroll">
+                                                        <div class="portlet light ">
+                                                            <div class="portlet-body">
+                                                                <div class="tab-content">
+                                                                    <asp:Repeater ID="rpActive" runat="server">
+                                                                        <ItemTemplate>
+                                                                            <div class='<%#Container.ItemIndex == 0 ? "tab-pane active" : "tab-pane"%>' id='<%#"tab_Inc_" + Eval("CountryID").ToString()%>'>
+                                                                                <asp:HiddenField ID="hfCountryID" runat="server" Value='<%#Eval("CountryID")%>' />
+                                                                                <table class="table table-bordered table-advanced table-striped table-hover" id="">
+                                                                                    <%-- Table Header --%>
+                                                                                    <thead>
+                                                                                        <tr class="TRDark">
+                                                                                            <th class="text-center col-md-4">
+                                                                                                <asp:Label ID="lbhExpenseTypeID" runat="server" Text="Code"></asp:Label>
+                                                                                            </th>
+                                                                                            <th class="text-center col-md-4">
+                                                                                                <asp:Label ID="lbhAmount" runat="server" Text="Country"></asp:Label>
+                                                                                            </th>
+                                                                                            <th class="text-center col-md-4">
+                                                                                                <asp:Label ID="lbhExpenseDate" runat="server" Text="Capital"></asp:Label>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <%-- END Table Header --%>
+
+                                                                                    <tbody>
+                                                                                        <asp:Repeater ID="rpData" runat="server">
+                                                                                            <ItemTemplate>
+                                                                                                <%-- Table Rows --%>
+                                                                                                <tr class="odd gradeX">
+                                                                                                    <td class="text-center">
+                                                                                                        <%#Eval("StateCode") %>
+                                                                                                    </td>
+                                                                                                    <td class="text-center">
+                                                                                                        <%#Eval("StateName") %>
+                                                                                                    </td>
+                                                                                                    <td class="text-center">
+                                                                                                        <%#Eval("StateCapital") %>
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <%-- END Table Rows --%>
+                                                                                            </ItemTemplate>
+                                                                                        </asp:Repeater>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </ItemTemplate>
+                                                                    </asp:Repeater>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
+        </div>
+    </div>
 
 </asp:Content>

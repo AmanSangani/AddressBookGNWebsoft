@@ -40,6 +40,9 @@
                                 <asp:Label ID="lblRegister" runat="server" Text="Don't have account? "></asp:Label>
                                 <asp:HyperLink ID="hlRegister" runat="server" Text="Register" NavigateUrl="~/AdminPanel/Auth/Register.aspx"></asp:HyperLink>
                             </div>
+                            <div class="form-group text-center">
+                                <asp:HyperLink ID="hlForgotPassword" runat="server" Text="Forgot Password?" NavigateUrl="~/AdminPanel/Auth/ForgotPassword.aspx"></asp:HyperLink>
+                            </div>
                         </div>
                     </div>
                 </div>
